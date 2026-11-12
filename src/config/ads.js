@@ -2,7 +2,7 @@ const env = import.meta.env;
 
 export const adsConfig = {
   enabled: (env.VITE_ADS_ENABLED ?? 'true') !== 'false',
-  client: (env.VITE_ADSENSE_CLIENT || 'ca-pub-7504961737515196').trim(),
+  client: (env.VITE_ADSENSE_CLIENT || 'ca-pub-3914966896286200').trim(),
   slots: {
     leaderboard: (env.VITE_AD_SLOT_LEADERBOARD || '').trim(),
     rectangle: (env.VITE_AD_SLOT_RECTANGLE || '').trim(),

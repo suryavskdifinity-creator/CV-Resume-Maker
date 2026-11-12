@@ -793,16 +793,13 @@
 }
 
 .preview-canvas {
-flex: 1;
-    /* overflow: auto !important; */
-    background: #e2e8f0;
-    /* border-radius: var(--radius-sm); */
-    padding: 16px !important;
-    max-height: 560px !important;
-    scrollbar-width: none;
-    height: 400px !important;
+  flex: 1;
+  overflow: auto;
+  background: #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  max-height: 560px;
 }
-
 
 .preview-note {
   font-size: 11.5px;
@@ -1265,12 +1262,10 @@ flex: 1;
 }
 
 .wizard-steps-row {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 12px;
-    flex-wrap: nowrap;
-    justify-content: center
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: 4px;
 }
 
 .wizard-step-dot {
@@ -1335,9 +1330,8 @@ flex: 1;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 55px;
+  padding: 28px;
   box-shadow: var(--shadow-sm);
-  width: 80%;
 }
 
 .wizard-nav {
@@ -1357,8 +1351,6 @@ flex: 1;
 .wizard-preview-col {
   position: sticky;
   top: 160px;
-  margin-left: -124px;
-
 }
 
 .wizard-preview-card {
@@ -2573,15 +2565,13 @@ flex: 1;
 }
 
 .full-preview-wrap {
-padding: 0% 100% 0% 0% !important;
-    position: relative;
-    background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
-    height: 401px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    /* padding-top: 17px; */
-    width: 100%;
+  position: relative;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  height: 420px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
 }
 
 .full-preview-scale {

@@ -198,7 +198,7 @@ export default function App() {
             </div>
           </div>
         </div>
-      )}
+      )} message={toast} />
 
       {/* Always in DOM for reliable PDF / print */}
       <div id="cv-print-root" className="print-root" aria-hidden="true">

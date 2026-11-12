@@ -24,4 +24,3 @@ npm run dev
 ## Env
 
 Copy `.env.example` to `.env`. Optional slot IDs when you create AdSense units.
-"# CV-Resume-Maker" 
