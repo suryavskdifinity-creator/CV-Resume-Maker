@@ -185,3 +185,36 @@ h1 {
 h2 {
   font-size: clamp(1.7rem, 3.2vw, 2.3rem);
 }
+
+
+/* Attractive global polish */
+::selection {
+  background: rgba(99, 102, 241, 0.22);
+  color: var(--navy);
+}
+
+body {
+  background:
+    radial-gradient(ellipse 120% 80% at 100% -20%, rgba(99, 102, 241, 0.07), transparent 50%),
+    radial-gradient(ellipse 80% 50% at -10% 100%, rgba(34, 211, 238, 0.05), transparent 45%),
+    var(--tint);
+}
+
+.btn-primary {
+  background: var(--gradient) !important;
+  border: none !important;
+  box-shadow: 0 8px 22px rgba(99, 102, 241, 0.35);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.4);
+}
+
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
