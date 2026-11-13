@@ -1,0 +1,146 @@
+@media (max-width: 1100px) {
+  .editor-layout {
+    grid-template-columns: 160px 1fr 300px;
+  }
+
+  .template-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .hero-preview-wrap {
+    max-height: 320px;
+    transform: none;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: grid;
+  }
+
+  .mobile-nav {
+    display: flex;
+  }
+
+  .header-actions .btn-ghost {
+    display: none;
+  }
+
+  .templates-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .templates-sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .filter-card {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .ad-skyscraper {
+    display: none;
+  }
+
+  .editor-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    padding: 10px;
+  }
+
+  .sidebar-ad {
+    display: none;
+  }
+
+  .form-panel {
+    border-right: none;
+    max-height: none;
+  }
+
+  .preview-panel {
+    order: 3;
+  }
+
+  .tools-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .template-showcase {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px;
+  }
+
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 28px);
+  }
+
+  .feature-grid,
+  .template-showcase,
+  .template-gallery,
+  .design-options {
+    grid-template-columns: 1fr;
+  }
+
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .editor-top-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .topbar-inner span:last-child {
+    display: none;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
