@@ -1,548 +1,146 @@
-/* ============================================================
-   CVora responsive system
-   Loaded LAST — overrides pages.css / layout.css conflicts
-   Breakpoints: 1100 · 960 · 640 · 400
-   ============================================================ */
-
-html {
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-img, video, canvas, svg {
-  max-width: 100%;
-  height: auto;
-}
-
-/* ---- Desktop container ---- */
-.container {
-  width: min(1120px, calc(100% - 48px));
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ============================================================
-   ≤ 1100px — large tablet
-   ============================================================ */
 @media (max-width: 1100px) {
-  .container {
-    width: calc(100% - 40px);
+  .editor-layout {
+    grid-template-columns: 160px 1fr 300px;
   }
 
-  .template-gallery,
-  .rio-template-grid,
-  .full-template-grid,
-  .pro-gallery,
-  .home-page .template-showcase {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  .template-gallery {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .feature-grid,
-  .feature-grid-rio,
-  .home-page .feature-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-
-  .full-preview-wrap,
-  .pro-preview {
-    height: 340px !important;
-    min-height: 340px !important;
-  }
-
-  .full-preview-scale,
-  .pro-preview-inner {
-    transform: scale(0.36) !important;
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* ============================================================
-   ≤ 960px — tablet / small laptop
-   ============================================================ */
-@media (max-width: 960px) {
-  .container {
-    width: calc(100% - 32px);
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
 
-  /* Navigation */
-  .desktop-nav,
-  .main-nav {
-    display: none !important;
+  .hero-visual {
+    order: -1;
   }
 
-  .header-actions .btn-ghost,
-  .hide-mobile {
-    display: none !important;
+  .hero-preview-wrap {
+    max-height: 320px;
+    transform: none;
   }
 
-  /* Hero */
-  .hero-grid,
-  .hero-rio-grid,
-  .home-page .hero-grid {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-    min-height: 0 !important;
-  }
-
-  .hero-visual,
-  .hero-rio-visual,
-  .hero-art {
-    order: -1 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    min-height: 0 !important;
-  }
-
-  .hero-preview-frame,
-  .hero-preview-wrap,
-  .hero-resume-card {
-    width: min(280px, 100%) !important;
-    max-width: 280px !important;
-    margin: 0 auto !important;
-  }
-
-  .home-page .hero h1,
-  .hero-rio-copy h1,
-  .hero h1 {
-    font-size: clamp(1.75rem, 5vw, 2.4rem) !important;
-    letter-spacing: -0.03em !important;
-    line-height: 1.15 !important;
-  }
-
-  /* Layouts → 1 col */
-  .templates-layout,
-  .gallery-layout,
-  .wizard-layout,
-  .editor-layout,
-  .tools-layout,
-  .intro-grid,
-  .workflow-grid {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
-  }
-
-  .ad-skyscraper,
-  .sticky-ad,
-  .sidebar-ad {
-    display: none !important;
-  }
-
-  .wizard-preview-col {
-    position: static !important;
-    order: -1 !important;
-    width: 100% !important;
-  }
-
-  .wizard-preview-card .preview-canvas {
-    max-height: 240px !important;
-  }
-
-  /* Footer tablet: brand full width, rest 2-col */
-  .footer-grid,
-  .footer-grid-wide {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 24px 20px !important;
-  }
-
-  .footer-brand {
-    grid-column: 1 / -1 !important;
-  }
-
-  .proof-inner {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-
-  .steps-row {
-    grid-template-columns: 1fr !important;
-  }
-
-  .cta-band-inner,
-  .cta-box,
-  .home-page .cta-box {
-    flex-direction: column !important;
-    align-items: stretch !important;
-  }
-}
-
-/* ============================================================
-   ≤ 640px — phones (critical fixes)
-   ============================================================ */
-@media (max-width: 640px) {
-  .container {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-
-  /* Header */
-  .site-header {
-    height: auto !important;
-    min-height: 56px;
-  }
-
-  .header-inner {
-    min-height: 56px;
-    gap: 8px;
-    padding: 6px 0;
-  }
-
-  .brand-mark {
-    width: 32px !important;
-    height: 32px !important;
-  }
-
-  .brand-text strong,
-  .brand {
-    font-size: 16px !important;
-  }
-
-  .brand-text small,
-  .brand small {
-    font-size: 8px !important;
-  }
-
-  .header-actions .btn {
-    padding: 8px 12px !important;
-    font-size: 13px !important;
-    white-space: nowrap !important;
-  }
-
-  .topbar-right,
-  .topbar-inner span:last-child {
-    display: none !important;
-  }
-
-  /* Hero text + buttons — no clipping */
-  .hero-rio,
-  .hero,
-  .home-page .hero {
-    padding: 20px 0 16px !important;
-  }
-
-  .home-page .hero h1,
-  .hero-rio-copy h1,
-  .hero h1 {
-    font-size: 1.6rem !important;
-    line-height: 1.2 !important;
-    letter-spacing: -0.02em !important;
-    max-width: 100% !important;
-    word-break: break-word;
-  }
-
-  .hero-lead,
-  .hero-rio-copy p,
-  .hero p {
-    font-size: 0.9rem !important;
-    max-width: 100% !important;
-  }
-
-  .hero-cta-row,
-  .hero-actions,
-  .home-page .hero-actions {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 10px !important;
-    width: 100% !important;
-  }
-
-  .hero-cta-row .btn,
-  .hero-actions .btn,
-  .home-page .hero-actions .btn {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex: none !important;
-    justify-content: center !important;
-    white-space: nowrap !important;
-    overflow: visible !important;
-    text-overflow: clip !important;
-  }
-
-  .hero-trust-row,
-  .hero-bottom,
-  .hero-assurances {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 10px !important;
-  }
-
-  .trust-text strong,
-  .trust-text small {
-    white-space: normal !important;
-    overflow: visible !important;
-    text-overflow: unset !important;
-  }
-
-  .hero-art {
-    min-height: 220px !important;
-    margin-top: 0 !important;
-  }
-
-  .hero-resume-card {
-    width: min(240px, 85%) !important;
-    height: auto !important;
-    min-height: 200px !important;
-  }
-
-  .hero-float-card,
-  .tag-top,
-  .tag-score,
-  .tag-pdf {
-    position: relative !important;
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    margin: 8px auto 0 !important;
-  }
-
-  /* All marketing grids → 1 col */
-  .feature-grid,
-  .feature-grid-rio,
-  .home-page .feature-grid,
-  .template-showcase,
-  .home-page .template-showcase,
-  .template-gallery,
-  .rio-template-grid,
-  .full-template-grid,
-  .pro-gallery,
-  .design-options,
-  .steps-row,
-  .proof-inner,
-  .field-grid {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-  }
-
-  .home-page .feature-card {
-    min-height: 0 !important;
-  }
-
-  /* FOOTER — single column, readable */
-  .site-footer {
-    padding: 28px 0 0 !important;
-    margin-top: 28px !important;
-  }
-
-  .footer-grid,
-  .footer-grid-wide {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 24px !important;
-  }
-
-  .footer-brand,
-  .footer-col {
-    width: 100% !important;
-    max-width: 100% !important;
-    grid-column: auto !important;
-  }
-
-  .footer-col h4 {
-    margin: 0 0 8px !important;
-  }
-
-  .footer-col button,
-  .footer-col a,
-  .footer-col span {
-    display: block !important;
-    width: 100% !important;
-    padding: 6px 0 !important;
-    white-space: normal !important;
-    overflow: visible !important;
-    text-overflow: unset !important;
-    word-break: break-word !important;
-  }
-
-  .footer-email,
-  .footer-col a[href^="mailto"] {
-    word-break: break-all !important;
-  }
-
-  .footer-bottom {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 8px !important;
-    padding: 14px 0 20px !important;
-  }
-
-  /* Wizard */
-  .wizard-top {
-    top: 56px !important;
-    padding: 10px 0 !important;
-  }
-
-  .wizard-steps-row {
-    display: flex !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-    gap: 4px;
-    scrollbar-width: none;
-  }
-
-  .wizard-steps-row::-webkit-scrollbar {
+  .desktop-nav {
     display: none;
   }
 
-  .wizard-step-dot {
-    min-width: 40px;
-    flex-shrink: 0;
+  .mobile-toggle {
+    display: grid;
   }
 
-  .dot-label {
-    display: none !important;
+  .mobile-nav {
+    display: flex;
   }
 
-  .wizard-card {
-    padding: 14px !important;
+  .header-actions .btn-ghost {
+    display: none;
   }
 
-  .wizard-nav {
-    flex-direction: column-reverse !important;
-    gap: 8px !important;
+  .templates-layout {
+    grid-template-columns: 1fr;
   }
 
-  .wizard-nav .btn,
-  .wizard-nav-right,
-  .wizard-nav-right .btn {
-    width: 100% !important;
-    justify-content: center !important;
+  .templates-sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
-  /* Templates */
-  .gallery-hero h1,
-  .page-hero h1 {
-    font-size: 1.5rem !important;
+  .filter-card {
+    flex: 1;
+    min-width: 200px;
   }
 
-  .full-preview-wrap,
-  .pro-preview {
-    height: 280px !important;
-    min-height: 280px !important;
+  .ad-skyscraper {
+    display: none;
   }
 
-  .full-preview-scale,
-  .pro-preview-inner {
-    transform: scale(0.3) !important;
+  .editor-layout {
+    grid-template-columns: 1fr;
   }
 
-  .full-card-footer {
-    flex-direction: column !important;
-    align-items: stretch !important;
+  .editor-sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    padding: 10px;
   }
 
-  .full-card-footer .btn {
-    width: 100% !important;
-    justify-content: center !important;
+  .sidebar-ad {
+    display: none;
   }
 
-  /* CTA */
-  .cta-band {
-    padding: 24px 0 !important;
+  .form-panel {
+    border-right: none;
+    max-height: none;
   }
 
-  .cta-band h2,
-  .home-page .cta-box h2 {
-    font-size: 1.25rem !important;
+  .preview-panel {
+    order: 3;
   }
 
-  .cta-band .btn,
-  .home-page .cta-box .btn {
-    width: 100% !important;
-    justify-content: center !important;
+  .tools-layout {
+    grid-template-columns: 1fr;
   }
 
-  .home-page .cta-box {
-    padding: 22px 16px !important;
+  .template-showcase {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Modals */
-  .modal-overlay {
-    padding: 12px !important;
-    align-items: center;
+  .cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px;
   }
 
-  .modal-card,
-  .pdf-ad-modal {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 16px !important;
-  }
-
-  .modal-actions {
-    flex-direction: column !important;
-  }
-
-  .modal-actions .btn {
-    width: 100% !important;
-    justify-content: center !important;
-  }
-
-  /* Touch */
-  .btn {
-    min-height: 44px;
-  }
-
-  .section {
-    padding: 32px 0 !important;
-  }
-
-  .intro-section,
-  .templates-section,
-  .workflow-section {
-    padding: 40px 0 !important;
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
-/* ============================================================
-   ≤ 400px — narrow phones
-   ============================================================ */
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .container {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
+    width: calc(100% - 28px);
   }
 
-  .home-page .hero h1,
-  .hero-rio-copy h1,
-  .hero h1 {
-    font-size: 1.4rem !important;
+  .feature-grid,
+  .template-showcase,
+  .template-gallery,
+  .design-options {
+    grid-template-columns: 1fr;
   }
 
-  .full-preview-wrap,
-  .pro-preview {
-    height: 240px !important;
-    min-height: 240px !important;
-  }
-}
-
-/* Landscape phones */
-@media (max-height: 500px) and (orientation: landscape) {
-  .hero-rio-visual,
-  .hero-visual,
-  .hero-art {
-    display: none !important;
+  .field-grid {
+    grid-template-columns: 1fr;
   }
 
-  .wizard-preview-col {
-    display: none !important;
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .editor-top-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .topbar-inner span:last-child {
+    display: none;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
