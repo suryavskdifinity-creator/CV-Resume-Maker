@@ -1,55 +1,80 @@
-/* =========================================================
-   CVora — Mobile responsive (alignment-first)
-   ========================================================= */
+/* ============================================================
+   CVora responsive system
+   Loaded LAST — overrides pages.css / layout.css conflicts
+   Breakpoints: 1100 · 960 · 640 · 400
+   ============================================================ */
 
-/* Prevent horizontal scroll */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 html, body {
   max-width: 100%;
   overflow-x: hidden;
 }
 
-img, svg, video {
-  max-width: 100%;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* ---------- ≤1100px ---------- */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---- Desktop container ---- */
+.container {
+  width: min(1120px, calc(100% - 48px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   ≤ 1100px — large tablet
+   ============================================================ */
 @media (max-width: 1100px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+
   .template-gallery,
   .rio-template-grid,
   .full-template-grid,
   .pro-gallery,
-  .feature-grid,
-  .feature-grid-rio {
-    grid-template-columns: repeat(2, 1fr) !important;
+  .home-page .template-showcase {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
-  .full-preview-wrap { height: 340px !important; }
-  .full-preview-scale { transform: scale(0.36) !important; }
+  .feature-grid,
+  .feature-grid-rio,
+  .home-page .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .full-preview-wrap,
+  .pro-preview {
+    height: 340px !important;
+    min-height: 340px !important;
+  }
+
+  .full-preview-scale,
+  .pro-preview-inner {
+    transform: scale(0.36) !important;
+  }
 }
 
-/* ---------- ≤960px tablets ---------- */
+/* ============================================================
+   ≤ 960px — tablet / small laptop
+   ============================================================ */
 @media (max-width: 960px) {
-  .hero-grid,
-  .hero-rio-grid {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
+  .container {
+    width: calc(100% - 32px);
   }
 
-  .hero-visual,
-  .hero-rio-visual {
-    order: -1;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .hero-preview-frame,
-  .hero-preview-wrap {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-
+  /* Navigation */
   .desktop-nav,
   .main-nav {
     display: none !important;
@@ -60,12 +85,53 @@ img, svg, video {
     display: none !important;
   }
 
+  /* Hero */
+  .hero-grid,
+  .hero-rio-grid,
+  .home-page .hero-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    min-height: 0 !important;
+  }
+
+  .hero-visual,
+  .hero-rio-visual,
+  .hero-art {
+    order: -1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    min-height: 0 !important;
+  }
+
+  .hero-preview-frame,
+  .hero-preview-wrap,
+  .hero-resume-card {
+    width: min(280px, 100%) !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+  }
+
+  .home-page .hero h1,
+  .hero-rio-copy h1,
+  .hero h1 {
+    font-size: clamp(1.75rem, 5vw, 2.4rem) !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.15 !important;
+  }
+
+  /* Layouts → 1 col */
   .templates-layout,
   .gallery-layout,
   .wizard-layout,
   .editor-layout,
-  .tools-layout {
+  .tools-layout,
+  .intro-grid,
+  .workflow-grid {
     grid-template-columns: 1fr !important;
+    gap: 20px !important;
   }
 
   .ad-skyscraper,
@@ -76,28 +142,28 @@ img, svg, video {
 
   .wizard-preview-col {
     position: static !important;
-    order: -1;
-    width: 100%;
+    order: -1 !important;
+    width: 100% !important;
   }
 
   .wizard-preview-card .preview-canvas {
-    max-height: 260px !important;
+    max-height: 240px !important;
   }
 
-  /* Footer: 2 columns on tablet */
+  /* Footer tablet: brand full width, rest 2-col */
   .footer-grid,
   .footer-grid-wide {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    gap: 28px 20px !important;
+    gap: 24px 20px !important;
   }
 
   .footer-brand {
-    grid-column: 1 / -1;
+    grid-column: 1 / -1 !important;
   }
 
   .proof-inner {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
   .steps-row {
@@ -105,96 +171,89 @@ img, svg, video {
   }
 
   .cta-band-inner,
-  .cta-box {
+  .cta-box,
+  .home-page .cta-box {
     flex-direction: column !important;
     align-items: stretch !important;
-    text-align: left;
   }
 }
 
-/* ---------- ≤640px phones — main fixes ---------- */
+/* ============================================================
+   ≤ 640px — phones (critical fixes)
+   ============================================================ */
 @media (max-width: 640px) {
   .container {
     width: 100% !important;
     max-width: 100% !important;
     padding-left: 16px !important;
     padding-right: 16px !important;
-    box-sizing: border-box;
   }
 
   /* Header */
   .site-header {
-    height: auto;
+    height: auto !important;
     min-height: 56px;
   }
 
   .header-inner {
     min-height: 56px;
-    padding: 8px 0;
     gap: 8px;
+    padding: 6px 0;
   }
 
   .brand-mark {
-    width: 32px;
-    height: 32px;
+    width: 32px !important;
+    height: 32px !important;
   }
 
-  .brand-text strong {
+  .brand-text strong,
+  .brand {
     font-size: 16px !important;
   }
 
-  .brand-text small {
+  .brand-text small,
+  .brand small {
     font-size: 8px !important;
-    letter-spacing: 0.06em;
-  }
-
-  .header-actions {
-    flex-shrink: 0;
   }
 
   .header-actions .btn {
     padding: 8px 12px !important;
     font-size: 13px !important;
-    white-space: nowrap;
+    white-space: nowrap !important;
   }
 
-  .topbar-inner {
-    padding: 6px 0;
-  }
-
-  .topbar-right {
+  .topbar-right,
+  .topbar-inner span:last-child {
     display: none !important;
   }
 
-  /* Hero — stacked, no cut-off text */
+  /* Hero text + buttons — no clipping */
   .hero-rio,
-  .hero {
-    padding: 24px 0 20px !important;
+  .hero,
+  .home-page .hero {
+    padding: 20px 0 16px !important;
   }
 
-  .hero-rio-copy,
-  .hero-copy {
-    width: 100%;
-    max-width: 100%;
-  }
-
+  .home-page .hero h1,
   .hero-rio-copy h1,
   .hero h1 {
-    font-size: 1.65rem !important;
+    font-size: 1.6rem !important;
     line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+    max-width: 100% !important;
     word-break: break-word;
   }
 
   .hero-lead,
-  .hero-rio-copy p {
-    font-size: 0.92rem !important;
-    line-height: 1.55;
+  .hero-rio-copy p,
+  .hero p {
+    font-size: 0.9rem !important;
     max-width: 100% !important;
   }
 
-  /* CTA buttons: full width, text never clips */
   .hero-cta-row,
-  .hero-actions {
+  .hero-actions,
+  .home-page .hero-actions {
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
@@ -203,51 +262,62 @@ img, svg, video {
   }
 
   .hero-cta-row .btn,
-  .hero-actions .btn {
+  .hero-actions .btn,
+  .home-page .hero-actions .btn {
     width: 100% !important;
     max-width: 100% !important;
+    flex: none !important;
     justify-content: center !important;
-    white-space: nowrap;
-    overflow: visible;
-    text-overflow: clip;
-    box-sizing: border-box;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
   }
 
-  .hero-trust-row {
-    flex-direction: column;
+  .hero-trust-row,
+  .hero-bottom,
+  .hero-assurances {
+    flex-direction: column !important;
     align-items: flex-start !important;
-    gap: 10px;
-  }
-
-  .trust-text {
-    max-width: 100%;
+    gap: 10px !important;
   }
 
   .trust-text strong,
   .trust-text small {
-    display: block;
     white-space: normal !important;
     overflow: visible !important;
     text-overflow: unset !important;
   }
 
-  .hero-preview-frame {
-    max-width: 260px;
+  .hero-art {
+    min-height: 220px !important;
+    margin-top: 0 !important;
   }
 
-  .hero-float-card {
+  .hero-resume-card {
+    width: min(240px, 85%) !important;
+    height: auto !important;
+    min-height: 200px !important;
+  }
+
+  .hero-float-card,
+  .tag-top,
+  .tag-score,
+  .tag-pdf {
     position: relative !important;
     left: auto !important;
+    right: auto !important;
+    top: auto !important;
     bottom: auto !important;
     transform: none !important;
-    margin: 12px auto 0;
-    width: fit-content;
+    margin: 8px auto 0 !important;
   }
 
-  /* Single column everywhere */
+  /* All marketing grids → 1 col */
   .feature-grid,
   .feature-grid-rio,
+  .home-page .feature-grid,
   .template-showcase,
+  .home-page .template-showcase,
   .template-gallery,
   .rio-template-grid,
   .full-template-grid,
@@ -257,21 +327,24 @@ img, svg, video {
   .proof-inner,
   .field-grid {
     grid-template-columns: 1fr !important;
-    gap: 14px !important;
+    gap: 12px !important;
   }
 
-  /* FOOTER — fixed alignment (was broken) */
+  .home-page .feature-card {
+    min-height: 0 !important;
+  }
+
+  /* FOOTER — single column, readable */
   .site-footer {
-    padding: 32px 0 0 !important;
-    margin-top: 32px !important;
+    padding: 28px 0 0 !important;
+    margin-top: 28px !important;
   }
 
   .footer-grid,
   .footer-grid-wide {
     display: flex !important;
     flex-direction: column !important;
-    gap: 28px !important;
-    grid-template-columns: none !important;
+    gap: 24px !important;
   }
 
   .footer-brand,
@@ -282,22 +355,23 @@ img, svg, video {
   }
 
   .footer-col h4 {
-    margin-bottom: 10px;
+    margin: 0 0 8px !important;
   }
 
   .footer-col button,
   .footer-col a,
   .footer-col span {
     display: block !important;
-    width: 100%;
+    width: 100% !important;
     padding: 6px 0 !important;
     white-space: normal !important;
     overflow: visible !important;
     text-overflow: unset !important;
-    word-break: break-word;
+    word-break: break-word !important;
   }
 
-  .footer-email {
+  .footer-email,
+  .footer-col a[href^="mailto"] {
     word-break: break-all !important;
   }
 
@@ -306,13 +380,7 @@ img, svg, video {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 8px !important;
-    padding: 16px 0 24px !important;
-  }
-
-  .footer-bottom p,
-  .footer-bottom a {
-    white-space: normal !important;
-    max-width: 100%;
+    padding: 14px 0 20px !important;
   }
 
   /* Wizard */
@@ -322,156 +390,159 @@ img, svg, video {
   }
 
   .wizard-steps-row {
-    display: flex;
-    overflow-x: auto;
+    display: flex !important;
+    overflow-x: auto !important;
     -webkit-overflow-scrolling: touch;
     gap: 4px;
-    padding-bottom: 4px;
     scrollbar-width: none;
   }
 
-  .wizard-steps-row::-webkit-scrollbar { display: none; }
+  .wizard-steps-row::-webkit-scrollbar {
+    display: none;
+  }
 
   .wizard-step-dot {
     min-width: 40px;
     flex-shrink: 0;
   }
 
-  .dot-label { display: none !important; }
+  .dot-label {
+    display: none !important;
+  }
 
   .wizard-card {
-    padding: 16px !important;
-    border-radius: 14px;
+    padding: 14px !important;
   }
 
   .wizard-nav {
-    display: flex !important;
     flex-direction: column-reverse !important;
-    gap: 10px !important;
+    gap: 8px !important;
   }
 
   .wizard-nav .btn,
   .wizard-nav-right,
   .wizard-nav-right .btn {
     width: 100% !important;
-    justify-content: center;
-  }
-
-  .finish-actions .btn {
-    width: 100% !important;
+    justify-content: center !important;
   }
 
   /* Templates */
   .gallery-hero h1,
   .page-hero h1 {
-    font-size: 1.55rem !important;
+    font-size: 1.5rem !important;
   }
 
-  .gallery-color-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  .full-preview-wrap,
+  .pro-preview {
+    height: 280px !important;
+    min-height: 280px !important;
   }
 
-  .templates-toolbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
+  .full-preview-scale,
+  .pro-preview-inner {
+    transform: scale(0.3) !important;
   }
-
-  .search-wrap { width: 100%; }
-
-  .full-preview-wrap { height: 300px !important; }
-  .full-preview-scale { transform: scale(0.32) !important; }
 
   .full-card-footer {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
+    flex-direction: column !important;
+    align-items: stretch !important;
   }
 
   .full-card-footer .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* CTA band */
-  .cta-band {
-    padding: 28px 0 !important;
-  }
-
-  .cta-band h2 {
-    font-size: 1.3rem !important;
-  }
-
-  .cta-band p {
-    max-width: 100% !important;
-  }
-
-  .cta-band .btn {
     width: 100% !important;
-    justify-content: center;
+    justify-content: center !important;
+  }
+
+  /* CTA */
+  .cta-band {
+    padding: 24px 0 !important;
+  }
+
+  .cta-band h2,
+  .home-page .cta-box h2 {
+    font-size: 1.25rem !important;
+  }
+
+  .cta-band .btn,
+  .home-page .cta-box .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .home-page .cta-box {
+    padding: 22px 16px !important;
   }
 
   /* Modals */
+  .modal-overlay {
+    padding: 12px !important;
+    align-items: center;
+  }
+
   .modal-card,
   .pdf-ad-modal {
-    width: calc(100% - 24px) !important;
+    width: 100% !important;
     max-width: 100% !important;
-    margin: 12px !important;
-    padding: 18px 14px !important;
-    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 16px !important;
   }
 
   .modal-actions {
     flex-direction: column !important;
-    gap: 8px;
   }
 
   .modal-actions .btn {
     width: 100% !important;
-    justify-content: center;
+    justify-content: center !important;
   }
 
-  /* Buttons */
+  /* Touch */
   .btn {
     min-height: 44px;
-    box-sizing: border-box;
   }
 
-  /* Section spacing */
   .section {
-    padding: 36px 0 !important;
+    padding: 32px 0 !important;
   }
 
-  .section-heading.center {
-    text-align: center;
-    align-items: center;
+  .intro-section,
+  .templates-section,
+  .workflow-section {
+    padding: 40px 0 !important;
   }
 }
 
-/* ---------- ≤400px very small ---------- */
+/* ============================================================
+   ≤ 400px — narrow phones
+   ============================================================ */
 @media (max-width: 400px) {
   .container {
     padding-left: 12px !important;
     padding-right: 12px !important;
   }
 
+  .home-page .hero h1,
   .hero-rio-copy h1,
   .hero h1 {
     font-size: 1.4rem !important;
   }
 
-  .header-actions .btn span,
-  .header-actions .btn svg + * {
-    /* keep Build CV short on tiny screens */
+  .full-preview-wrap,
+  .pro-preview {
+    height: 240px !important;
+    min-height: 240px !important;
   }
 }
 
-/* Landscape short screens */
-@media (max-height: 480px) and (orientation: landscape) {
+/* Landscape phones */
+@media (max-height: 500px) and (orientation: landscape) {
   .hero-rio-visual,
-  .hero-visual {
+  .hero-visual,
+  .hero-art {
+    display: none !important;
+  }
+
+  .wizard-preview-col {
     display: none !important;
   }
 }
