@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Search, Filter, Download, Star, Sparkles } from 'lucide-react';
 import AdSlot from '../components/ads/AdSlot';
 import ResumePreview from '../components/resume/ResumePreview';
+import ScaledPaper from '../components/resume/ScaledPaper';
 import { templates, CATEGORIES, ACCENTS } from '../config/templates';
 import { initialCV } from '../data/initialCV';
 
@@ -138,9 +139,9 @@ export default function Templates({ onApplyTemplate, sampleCv }) {
                   )}
 
                   <div className="full-preview-wrap">
-                    <div className="full-preview-scale">
+                    <ScaledPaper maxHeight={440}>
                       <ResumePreview cv={previewCv} compact />
-                    </div>
+                    </ScaledPaper>
                     <div className="full-select-overlay">
                       <button
                         type="button"

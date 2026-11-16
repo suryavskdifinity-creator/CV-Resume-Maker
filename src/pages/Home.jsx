@@ -5,6 +5,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import ResumePreview from '../components/resume/ResumePreview';
+import ScaledPaper from '../components/resume/ScaledPaper';
 import TemplateThumb from '../components/resume/TemplateThumb';
 import AdSlot from '../components/ads/AdSlot';
 import { templates } from '../config/templates';
@@ -12,7 +13,7 @@ import { templates } from '../config/templates';
 const TYPING_WORDS = ['hired', 'noticed', 'promoted', 'shortlisted', 'interviewed'];
 
 const STATS = [
-  { value: '120+', label: 'Resume templates' },
+  { value: '150+', label: 'Resume templates' },
   { value: '8', label: 'Layout styles' },
   { value: '100%', label: 'Free PDF export' },
   { value: '0', label: 'Account required' },
@@ -124,7 +125,9 @@ export default function Home({ cv, onNavigate, onApplyTemplate }) {
                 <i />
                 <span>LIVE PREVIEW</span>
               </div>
-              <ResumePreview cv={cv} compact />
+              <ScaledPaper maxHeight={400}>
+                <ResumePreview cv={cv} compact />
+              </ScaledPaper>
             </div>
             <div className="floating-tag tag-score">
               <span className="score-ring">✓</span>
@@ -199,7 +202,7 @@ export default function Home({ cv, onNavigate, onApplyTemplate }) {
 
           <div className="section-cta-center">
             <button type="button" className="btn btn-primary" onClick={() => onNavigate('templates')}>
-              View all 120+ templates <ArrowRight size={16} />
+              View all 150+ templates <ArrowRight size={16} />
             </button>
           </div>
         </div>

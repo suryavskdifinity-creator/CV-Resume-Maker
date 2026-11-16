@@ -15,7 +15,7 @@ export default function Footer({ onNavigate }) {
             <span>by Suraj Vishwakarma</span>
           </div>
           <p>
-            Free AI resume studio. Build ATS-friendly CVs with 120+ templates.
+            Free AI resume studio. Build ATS-friendly CVs with 150+ templates.
             No watermark. Local privacy. Supported by Google Ads.
           </p>
           <a className="footer-email" href="mailto:suraj.infotechsolution@gmail.com">

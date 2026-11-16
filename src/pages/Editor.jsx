@@ -7,6 +7,7 @@ import {
 import Field from '../components/ui/Field';
 import AdSlot from '../components/ads/AdSlot';
 import ResumePreview from '../components/resume/ResumePreview';
+import ScaledPaper from '../components/resume/ScaledPaper';
 import TemplateThumb from '../components/resume/TemplateThumb';
 import { templates, ACCENTS, BASE_LAYOUTS, starterSkills } from '../config/templates';
 import { makeSummary, improveBullet } from '../utils/aiHelpers';
@@ -368,7 +369,7 @@ export default function Editor({
                   ))}
                 </div>
                 <button className="btn btn-outline btn-sm" type="button" onClick={() => onNavigate('templates')}>
-                  <LayoutTemplate size={14} /> Browse all 120+ templates
+                  <LayoutTemplate size={14} /> Browse all 150+ templates
                 </button>
               </div>
             )}
@@ -443,7 +444,9 @@ export default function Editor({
               )}
             </div>
             <div className="preview-canvas">
-              <ResumePreview cv={cv} />
+              <ScaledPaper>
+                <ResumePreview cv={cv} />
+              </ScaledPaper>
             </div>
             <p className="preview-note">Edits update here in real time.</p>
           </div>

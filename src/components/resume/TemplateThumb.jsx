@@ -3,12 +3,15 @@ import React from 'react';
 /**
  * Realistic mini CV preview — closer to full resume cards (resume.io style).
  */
+const THUMB_MAP = { banner: 'header', rail: 'sidebar', pill: 'header', darkside: 'sidebar', editorial: 'minimal' };
+
 export default function TemplateThumb({
-  layout = 'classic',
+  layout: layoutProp = 'classic',
   color = '#6366f1',
   name = 'Alex Morgan',
   role = 'Product Designer',
 }) {
+  const layout = THUMB_MAP[layoutProp] || layoutProp;
   const style = { '--t-accent': color };
   const first = (name || 'A').split(' ')[0];
 

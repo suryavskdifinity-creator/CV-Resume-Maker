@@ -1,5 +1,6 @@
 import React from 'react';
 
+const SIDEBAR = ['sidebar', 'darkside'];
 const splitLines = (value = '') => String(value).split(/\n|•/).map((s) => s.trim()).filter(Boolean);
 
 export default function ResumePreview({ cv = {}, compact = false }) {
@@ -47,7 +48,7 @@ export default function ResumePreview({ cv = {}, compact = false }) {
     </div>
   ));
 
-  const skillContent = skills.length ? <div className={layout === 'modern' || layout === 'sidebar' ? 'skill-tags' : 'skill-columns'}>
+  const skillContent = skills.length ? <div className={['modern', 'sidebar', 'pill', 'rail', 'banner', 'darkside'].includes(layout) ? 'skill-tags' : 'skill-columns'}>
     {skills.map((s) => <span className="skill-tag" key={s}>{s}</span>)}
   </div> : <div className="skill-tags">{['Communication', 'Leadership', 'Project Management', 'Data Analysis', 'Problem Solving', 'Strategic Planning'].map((s) => <span className="skill-tag" key={s}>{s}</span>)}</div>;
 
@@ -57,7 +58,7 @@ export default function ResumePreview({ cv = {}, compact = false }) {
 
   return (
     <article className={`resume-paper layout-${layout} ${compact ? 'compact' : ''}`} style={{ '--accent': cv.accent || '#176b62' }}>
-      {layout === 'sidebar' && (
+      {SIDEBAR.includes(layout) && (
         <aside className="resume-sidebar">
           <div className="rs-avatar">{monogram}</div>
           <div className="rs-side-name">{cv.name || 'Alex Morgan'}</div>
@@ -75,18 +76,36 @@ export default function ResumePreview({ cv = {}, compact = false }) {
           {['header', 'modern', 'executive'].includes(layout) && <div className="resume-topbar" />}
           <div className="resume-header-inner">
             <div className="resume-identity">
+              {layout === 'pill' && <div className="rs-avatar pill-avatar">{monogram}</div>}
               <h1>{cv.name || 'Alex Morgan'}</h1>
               <p className="resume-role">{cv.role || 'Product Designer'}</p>
             </div>
-            {layout !== 'sidebar' && <div className="resume-contact">{contacts.length ? contacts.map((c) => <span key={c}>{c}</span>) : <><span>✉ alex.morgan@email.com</span><span>☎ +1 555 010 2040</span><span>⌖ New York, NY</span></>}</div>}
+            {!SIDEBAR.includes(layout) && <div className="resume-contact">{contacts.length ? contacts.map((c) => <span key={c}>{c}</span>) : <><span>✉ alex.morgan@email.com</span><span>☎ +1 555 010 2040</span><span>⌖ New York, NY</span></>}</div>}
           </div>
         </header>
-        {summary}
+        {layout === 'rail' ? (
+          <div className="rail-body">
+            <div className="rail-left">
+              {summary}
+              {section('Professional Experience', experience)}
+              {section('Selected Projects', projects)}
+            </div>
+            <aside className="rail-right">
+              {section('Skills', skillContent)}
+              {section('Education', education)}
+              {cv.certifications?.length > 0 && section('Certifications', <ul className="resume-bullets">{cv.certifications.map((x, i) => <li key={i}>{x}</li>)}</ul>)}
+            </aside>
+          </div>
+        ) : (
+          <>
+            {summary}
         {section('Professional Experience', experience)}
         {section('Education', education)}
-        {layout !== 'sidebar' && section('Skills & Expertise', skillContent)}
+        {!SIDEBAR.includes(layout) && layout !== 'rail' && section('Skills & Expertise', skillContent)}
         {section('Selected Projects', projects)}
         {cv.certifications?.length > 0 && section('Certifications', <ul className="resume-bullets">{cv.certifications.map((x, i) => <li key={i}>{x}</li>)}</ul>)}
+          </>
+        )}
       </div>
     </article>
   );

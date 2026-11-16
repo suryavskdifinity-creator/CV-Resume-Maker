@@ -21,10 +21,16 @@ export const BASE_LAYOUTS = [
   { id: 'modern', label: 'Modern', desc: 'Tech-inspired, skill-forward' },
   { id: 'minimal', label: 'Minimal', desc: 'Airy centered typography' },
   { id: 'executive', label: 'Executive', desc: 'Dense senior leadership format' },
+  { id: 'banner', label: 'Banner', desc: 'Full-width gradient header band' },
+  { id: 'rail', label: 'Rail', desc: 'Main column with tinted skills rail' },
+  { id: 'pill', label: 'Pill', desc: 'Monogram + rounded section chips' },
+  { id: 'darkside', label: 'Darkside', desc: 'Midnight sidebar, bright accents' },
+  { id: 'editorial', label: 'Editorial', desc: 'Centered serif, double-rule masthead' },
 ];
 
 export const CATEGORIES = [
   'All',
+  'Trending',
   'Professional',
   'ATS Friendly',
   'Modern',
@@ -69,6 +75,23 @@ const NAMED = [
   { name: 'Industrial', type: 'Minimalist', layout: 'minimal', color: '#57534e', desc: 'Modern minimalist with graceful clarity.' },
   { name: 'Nordic', type: 'Minimalist', layout: 'minimal', color: '#0f766e', desc: 'Cool, airy Nordic-inspired simplicity.' },
   { name: 'Summit', type: 'Modern', layout: 'header', color: '#0e7490', desc: 'Confident header band for rising professionals.' },
+
+  // Trending — new 2026 layouts
+  { name: 'Horizon', type: 'Trending', layout: 'banner', color: '#4f46e5', desc: 'Gradient banner header that makes your name the hero.' },
+  { name: 'Sunrise', type: 'Trending', layout: 'banner', color: '#ea580c', desc: 'Warm banner header for marketing and sales roles.' },
+  { name: 'Lagoon', type: 'Trending', layout: 'banner', color: '#0891b2', desc: 'Cool ocean banner, crisp skill pills.' },
+  { name: 'Orbit', type: 'Trending', layout: 'rail', color: '#7c3aed', desc: 'Skills & education rail keeps key facts in view.' },
+  { name: 'Pulse', type: 'Trending', layout: 'rail', color: '#e11d48', desc: 'Two-zone layout, experience gets the spotlight.' },
+  { name: 'Evergreen', type: 'Trending', layout: 'rail', color: '#047857', desc: 'Calm green rail, ideal for healthcare & education.' },
+  { name: 'Bubble', type: 'Trending', layout: 'pill', color: '#db2777', desc: 'Monogram badge with friendly rounded section chips.' },
+  { name: 'Candy', type: 'Trending', layout: 'pill', color: '#8b5cf6', desc: 'Playful yet polished for design & social roles.' },
+  { name: 'Spark', type: 'Trending', layout: 'pill', color: '#0d9488', desc: 'Fresh teal chips, great for startups.' },
+  { name: 'Midnight', type: 'Trending', layout: 'darkside', color: '#38bdf8', desc: 'Dark sidebar with electric accent — stands out in a pile.' },
+  { name: 'Obsidian', type: 'Trending', layout: 'darkside', color: '#a78bfa', desc: 'Premium dark rail for developers and tech leads.' },
+  { name: 'Ember Dark', type: 'Trending', layout: 'darkside', color: '#fb923c', desc: 'Dark sidebar with warm orange highlights.' },
+  { name: 'Gazette', type: 'Trending', layout: 'editorial', color: '#9f1239', desc: 'Newspaper-style masthead with timeless serif type.' },
+  { name: 'Ivy', type: 'Trending', layout: 'editorial', color: '#166534', desc: 'Academic editorial look for research & law.' },
+  { name: 'Noir', type: 'Trending', layout: 'editorial', color: '#1e293b', desc: 'Black & white elegance, maximum gravitas.' },
 
   // Creative (still professional, not wild)
   { name: 'Vivid', type: 'Creative', layout: 'header', color: '#c2410c', desc: 'Powerful modern template with bold section highlights.' },
@@ -118,18 +141,19 @@ function expandTemplates() {
     idx++;
   }
 
-  // Color variants of each named template to reach 100+
-  const extraColors = [
-    '#0f766e', '#1d4ed8', '#b45309', '#7c3aed', '#be123c', '#0369a1',
-    '#15803d', '#c2410c', '#4338ca', '#0e7490',
+  // Color variants of each named template (named by colour, not "Teal/Accent")
+  const variants = [
+    ['Ocean', '#0369a1'], ['Forest', '#15803d'], ['Plum', '#7e22ce'],
+    ['Ruby', '#be123c'], ['Amber', '#b45309'], ['Indigo', '#4338ca'],
+    ['Graphite', '#334155'], ['Teal', '#0f766e'],
   ];
   for (const t of NAMED) {
     for (let c = 0; c < 2; c++) {
-      const color = extraColors[(idx + c) % extraColors.length];
+      const [vName, color] = variants[(idx + c * 3) % variants.length];
       if (color === t.color) continue;
       list.push({
         id: `${t.layout}-${t.name.toLowerCase().replace(/\s+/g, '-')}-v${c}-${idx}`,
-        name: `${t.name} ${c === 0 ? 'Teal' : 'Accent'}`,
+        name: `${t.name} ${vName}`,
         type: t.type,
         color,
         layout: t.layout,
@@ -139,7 +163,8 @@ function expandTemplates() {
     }
   }
 
-  return list.slice(0, 120);
+  // trending designs first, otherwise keep original order
+  return [...list.filter((t) => t.type === 'Trending'), ...list.filter((t) => t.type !== 'Trending')];
 }
 
 export const templates = expandTemplates();
