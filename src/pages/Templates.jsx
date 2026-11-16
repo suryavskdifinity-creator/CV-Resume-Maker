@@ -71,7 +71,7 @@ export default function Templates({ onApplyTemplate, sampleCv }) {
       </div>
 
       <div className="container ad-band">
-        <AdSlot size="leaderboard" label="Sponsored" />
+        <AdSlot size="leaderboard" label="Advertisement" />
       </div>
 
       <div className="container templates-layout gallery-layout">
@@ -96,7 +96,7 @@ export default function Templates({ onApplyTemplate, sampleCv }) {
               ))}
             </div>
           </div>
-          <AdSlot size="skyscraper" label="Sponsored" className="sticky-ad" />
+          <AdSlot size="skyscraper" label="Advertisement" className="sticky-ad" />
         </aside>
 
         <div className="templates-main">
@@ -124,8 +124,11 @@ export default function Templates({ onApplyTemplate, sampleCv }) {
                 layout: t.layout,
               };
               return (
+                <React.Fragment key={t.id}>
+                {idx > 0 && idx % 9 === 0 && (
+                  <div className="feed-ad"><AdSlot size="infeed" /></div>
+                )}
                 <article
-                  key={t.id}
                   className={`full-template-card ${hoverId === t.id ? 'is-hover' : ''}`}
                   onMouseEnter={() => setHoverId(t.id)}
                   onMouseLeave={() => setHoverId(null)}
@@ -167,6 +170,7 @@ export default function Templates({ onApplyTemplate, sampleCv }) {
                     </button>
                   </div>
                 </article>
+                </React.Fragment>
               );
             })}
           </div>
@@ -176,7 +180,7 @@ export default function Templates({ onApplyTemplate, sampleCv }) {
           )}
 
           <div className="ad-band">
-            <AdSlot size="rectangle" label="Sponsored" className="ad-center" />
+            <AdSlot size="rectangle" label="Advertisement" className="ad-center" />
           </div>
         </div>
       </div>

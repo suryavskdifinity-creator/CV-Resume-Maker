@@ -8,6 +8,9 @@ export const adsConfig = {
     rectangle: (env.VITE_AD_SLOT_RECTANGLE || '').trim(),
     skyscraper: (env.VITE_AD_SLOT_SKYSCRAPER || '').trim(),
     mobile: (env.VITE_AD_SLOT_MOBILE || '').trim(),
+    infeed: (env.VITE_AD_SLOT_INFEED || '').trim(),
+    // One responsive display unit can power every placement above
+    default: (env.VITE_AD_SLOT_DEFAULT || '').trim(),
   },
   pdfCountdown: Math.max(0, parseInt(env.VITE_PDF_AD_COUNTDOWN || '5', 10) || 5),
   sizeLabels: {
@@ -23,9 +26,9 @@ export function canShowAds() {
 }
 
 export function hasSlot(size) {
-  return Boolean(canShowAds() && adsConfig.slots[size]);
+  return Boolean(canShowAds() && (adsConfig.slots[size] || adsConfig.slots.default));
 }
 
 export function getSlot(size) {
-  return adsConfig.slots[size] || '';
+  return adsConfig.slots[size] || adsConfig.slots.default || '';
 }

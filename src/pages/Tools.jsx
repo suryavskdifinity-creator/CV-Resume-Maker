@@ -29,7 +29,7 @@ export default function Tools({ cv, onUpdate, onUpdateList, onNavigate, onToast 
       </div>
 
       <div className="container ad-band">
-        <AdSlot size="leaderboard" label="Sponsored" />
+        <AdSlot size="leaderboard" label="Advertisement" />
       </div>
 
       <div className="container tools-layout">
@@ -167,9 +167,10 @@ export default function Tools({ cv, onUpdate, onUpdateList, onNavigate, onToast 
               </div>
             ))}
           </div>
-          <AdSlot size="rectangle" label="Sponsored" />
+          <AdSlot size="rectangle" label="Advertisement" />
         </aside>
       </div>
+      <div className="container ad-band"><AdSlot size="leaderboard" /></div>
     </main>
   );
 }

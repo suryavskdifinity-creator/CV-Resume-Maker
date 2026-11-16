@@ -174,11 +174,8 @@ export default function App() {
           <div className="modal-card pdf-ad-modal" role="dialog" aria-modal="true">
             <h3>Almost ready — free PDF</h3>
             <p className="pdf-ad-copy">
-              CVora is free because of ads. Please view this sponsored message, then download your resume.
+              CVora is free and supported by the ads you see around the site. Your PDF is being prepared.
             </p>
-            <div className="pdf-ad-box">
-              <AdSlot size="rectangle" label="Sponsored — click if interested" className="ad-center" />
-            </div>
             <p className="pdf-ad-note">
               After the timer, your PDF will download. Thank you for supporting free tools.
             </p>

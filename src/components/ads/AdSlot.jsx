@@ -1,65 +1,43 @@
 import React, { useEffect, useRef } from 'react';
-import { adsConfig, canShowAds, hasSlot, getSlot } from '../../config/ads';
+import { adsConfig, hasSlot, getSlot } from '../../config/ads';
 
 /**
- * Ad unit:
- * - With slot ID → real AdSense <ins> + push (no TagError)
- * - Client only → branded placeholder (Auto ads still run from index.html script)
+ * Responsive AdSense unit.
+ * - Renders only when a slot ID exists (VITE_AD_SLOT_* or VITE_AD_SLOT_DEFAULT);
+ *   Auto ads from the <head> script keep working either way.
+ * - Reserves space (no layout shift) and collapses itself if no ad is filled.
+ * - Labelled "Advertisement" (AdSense policy: never ask people to click).
  */
-export default function AdSlot({
-  label = 'Advertisement',
-  size = 'rectangle',
-  className = '',
-}) {
+export default function AdSlot({ size = 'rectangle', className = '', label = 'Advertisement' }) {
   const ref = useRef(null);
   const pushed = useRef(false);
-
   const live = hasSlot(size);
 
   useEffect(() => {
     if (!live || !ref.current || pushed.current) return;
     try {
-      const w = window;
-      w.adsbygoogle = w.adsbygoogle || [];
-      w.adsbygoogle.push({});
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
       pushed.current = true;
     } catch {
-      /* ignore */
+      /* ad blocker or script not ready */
     }
   }, [live]);
 
-  if (!adsConfig.enabled || !adsConfig.client) return null;
+  if (!live) return null;
 
-  const sizeClass =
-    size === 'leaderboard'
-      ? 'ad-leaderboard'
-      : size === 'skyscraper'
-      ? 'ad-skyscraper'
-      : size === 'mobile'
-      ? 'ad-mobile'
-      : 'ad-rectangle';
-
-  if (live) {
-    return (
-      <div className={`ad-slot ad-live ${sizeClass} ${className}`}>
-        <ins
-          className="adsbygoogle"
-          style={{
-            display: 'block',
-            width: '100%',
-            minHeight:
-              size === 'leaderboard' ? 90 : size === 'skyscraper' ? 600 : 250,
-          }}
-          data-ad-client={adsConfig.client}
-          data-ad-slot={getSlot(size)}
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-          ref={ref}
-        />
-      </div>
-    );
-  }
-
-  // Auto ads are injected site-wide. Do not render fake ad boxes without a real slot ID.
-  return null;
+  return (
+    <aside className={`ad-slot ad-live ad-${size} ${className}`} aria-label="Advertisement">
+      <span className="ad-label">{label}</span>
+      <ins
+        ref={ref}
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client={adsConfig.client}
+        data-ad-slot={getSlot(size)}
+        data-ad-format={size === 'infeed' ? 'fluid' : 'auto'}
+        data-ad-layout={size === 'infeed' ? 'in-article' : undefined}
+        data-full-width-responsive="true"
+      />
+    </aside>
+  );
 }

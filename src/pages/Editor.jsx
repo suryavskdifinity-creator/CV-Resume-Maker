@@ -400,10 +400,12 @@ export default function Editor({
                   </p>
                 </div>
                 <div className="finish-ad">
-                  <AdSlot size="rectangle" label="Sponsored" className="ad-center" />
+                  <AdSlot size="rectangle" label="Advertisement" className="ad-center" />
                 </div>
               </div>
             )}
+
+            <div className="editor-inline-ad"><AdSlot size="leaderboard" /></div>
 
             {/* Wizard footer nav */}
             <div className="wizard-nav">
@@ -450,6 +452,7 @@ export default function Editor({
             </div>
             <p className="preview-note">Edits update here in real time.</p>
           </div>
+          <AdSlot size="rectangle" className="ad-center editor-side-ad" />
         </aside>
       </div>
     </main>

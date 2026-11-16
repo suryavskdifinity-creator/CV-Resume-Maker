@@ -14,9 +14,26 @@ const TYPING_WORDS = ['hired', 'noticed', 'promoted', 'shortlisted', 'interviewe
 
 const STATS = [
   { value: '150+', label: 'Resume templates' },
-  { value: '8', label: 'Layout styles' },
+  { value: '13', label: 'Layout styles' },
   { value: '100%', label: 'Free PDF export' },
   { value: '0', label: 'Account required' },
+];
+
+const TIPS = [
+  { n: '01', title: 'Lead with impact, not duties', text: 'Start each bullet with a strong verb and finish with a number: "Cut onboarding time by 28%" beats "Responsible for onboarding".' },
+  { n: '02', title: 'Mirror the job description', text: 'Applicant tracking systems match keywords. Reuse the exact skills and tools named in the posting, wherever they are true for you.' },
+  { n: '03', title: 'Keep it to one or two pages', text: 'One page up to ~10 years of experience; two for senior roles. Cut anything older than 15 years unless it is essential.' },
+  { n: '04', title: 'Choose a clean, readable layout', text: 'Clear headings, consistent dates and a single accent colour. Use single-column ATS layouts when applying through online portals.' },
+  { n: '05', title: 'Proofread, then export a PDF', text: 'Check names, dates and contact details. PDF keeps your formatting identical on every device and in every inbox.' },
+  { n: '06', title: 'Tailor every application', text: 'Swap the summary and top three bullets for each role. Ten minutes of tailoring beats sending one generic CV everywhere.' },
+];
+
+const FAQS = [
+  { q: 'Is CVora really free?', a: 'Yes. Every template and the PDF download are free, with no watermark and no account. The site is supported by advertising.' },
+  { q: 'Is my data private?', a: 'Your resume is stored in your own browser (local storage). It is not uploaded to a server unless you choose to share it yourself.' },
+  { q: 'Will my resume pass ATS software?', a: 'Our ATS-friendly layouts use a single column, standard headings and real text, which scanners read reliably. No tool can guarantee a result, so always tailor keywords to the job.' },
+  { q: 'Which template should I choose?', a: 'Use ATS or Classic for corporate portals, Modern or Rail for tech and business roles, and Banner, Pill or Darkside for creative fields where personality matters.' },
+  { q: 'Can I change colours and sections?', a: 'Yes. Pick any accent colour in the gallery or editor, switch templates at any time and your content carries over.' },
 ];
 
 const FEATURES = [
@@ -159,7 +176,7 @@ export default function Home({ cv, onNavigate, onApplyTemplate }) {
       </section>
 
       <div className="container ad-band">
-        <AdSlot size="leaderboard" label="Sponsored" />
+        <AdSlot size="leaderboard" label="Advertisement" />
       </div>
 
       <section className="section templates-section">
@@ -208,6 +225,8 @@ export default function Home({ cv, onNavigate, onApplyTemplate }) {
         </div>
       </section>
 
+      <div className="container ad-band"><AdSlot size="leaderboard" /></div>
+
       <section className="section features-section">
         <div className="container">
           <div className="section-heading center">
@@ -251,8 +270,44 @@ export default function Home({ cv, onNavigate, onApplyTemplate }) {
       </section>
 
       <div className="container ad-band">
-        <AdSlot size="rectangle" label="Sponsored" className="ad-center" />
+        <AdSlot size="rectangle" label="Advertisement" className="ad-center" />
       </div>
+
+      <section className="section tips-section">
+        <div className="container">
+          <div className="section-heading center">
+            <div className="eyebrow">RESUME GUIDE</div>
+            <h2>Write a resume that <span className="gradient-text">gets read</span></h2>
+            <p className="section-subtitle">Short, practical advice from what recruiters scan for in the first seconds.</p>
+          </div>
+          <div className="tips-grid">
+            {TIPS.map((t) => (
+              <article className="tip-card" key={t.title}>
+                <span className="tip-n">{t.n}</span>
+                <h3>{t.title}</h3>
+                <p>{t.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section faq-section">
+        <div className="container faq-wrap">
+          <div className="section-heading center">
+            <div className="eyebrow">FAQ</div>
+            <h2>Questions, <span className="gradient-text">answered</span></h2>
+          </div>
+          {FAQS.map((f) => (
+            <details className="faq-item" key={f.q}>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <div className="container ad-band"><AdSlot size="leaderboard" /></div>
 
       <section className="cta-band">
         <div className="container cta-band-inner">
