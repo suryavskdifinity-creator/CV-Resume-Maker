@@ -48,7 +48,7 @@ export default function ResumePreview({ cv = {}, compact = false }) {
     </div>
   ));
 
-  const skillContent = skills.length ? <div className={['modern', 'sidebar', 'pill', 'rail', 'banner', 'darkside'].includes(layout) ? 'skill-tags' : 'skill-columns'}>
+  const skillContent = skills.length ? <div className={['modern', 'sidebar', 'pill', 'rail', 'banner', 'darkside', 'tech', 'bento'].includes(layout) ? 'skill-tags' : 'skill-columns'}>
     {skills.map((s) => <span className="skill-tag" key={s}>{s}</span>)}
   </div> : <div className="skill-tags">{['Communication', 'Leadership', 'Project Management', 'Data Analysis', 'Problem Solving', 'Strategic Planning'].map((s) => <span className="skill-tag" key={s}>{s}</span>)}</div>;
 

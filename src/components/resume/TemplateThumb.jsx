@@ -3,7 +3,7 @@ import React from 'react';
 /**
  * Realistic mini CV preview — closer to full resume cards (resume.io style).
  */
-const THUMB_MAP = { banner: 'header', rail: 'sidebar', pill: 'header', darkside: 'sidebar', editorial: 'minimal' };
+const THUMB_MAP = { banner: 'header', rail: 'sidebar', pill: 'header', darkside: 'sidebar', editorial: 'minimal', stripe: 'classic', bento: 'classic', compact: 'executive', tech: 'header', split: 'header' };
 
 export default function TemplateThumb({
   layout: layoutProp = 'classic',

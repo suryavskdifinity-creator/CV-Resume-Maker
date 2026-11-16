@@ -35,23 +35,24 @@ export default function Footer({ onNavigate }) {
           <h4>Job seekers</h4>
           <button type="button" onClick={() => onNavigate('templates')}>Browse designs</button>
           <button type="button" onClick={() => onNavigate('tools')}>Keyword match</button>
+          <button type="button" onClick={() => onNavigate('blog')}>Resume guides</button>
           <button type="button" onClick={() => onNavigate('home')}>How it works</button>
           <a href="mailto:suraj.infotechsolution@gmail.com">Career questions</a>
         </div>
 
         <div className="footer-col">
           <h4>Company</h4>
-          <span>CVora by Suraj</span>
-          <span>Suraj Vishwakarma</span>
-          <a href="mailto:suraj.infotechsolution@gmail.com">Partnerships</a>
+          <button type="button" onClick={() => onNavigate('about')}>About CVora</button>
+          <button type="button" onClick={() => onNavigate('blog')}>Guides &amp; tips</button>
           <button type="button" onClick={() => onNavigate('terms')}>Terms of use</button>
+          <button type="button" onClick={() => onNavigate('privacy')}>Privacy policy</button>
         </div>
 
         <div className="footer-col">
           <h4>Support</h4>
-          <a href="mailto:suraj.infotechsolution@gmail.com">Contact us</a>
-          <a href="mailto:suraj.infotechsolution@gmail.com">Report a bug</a>
-          <button type="button" onClick={() => onNavigate('terms')}>Privacy</button>
+          <button type="button" onClick={() => onNavigate('contact')}>Contact us</button>
+          <button type="button" onClick={() => onNavigate('contact')}>Report a bug</button>
+          <a href="mailto:suraj.infotechsolution@gmail.com">Email us</a>
           <span>Free · Ad-supported</span>
         </div>
       </div>

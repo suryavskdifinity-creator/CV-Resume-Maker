@@ -6,6 +6,7 @@ const NAV = [
   { id: 'templates', label: 'Templates' },
   { id: 'editor', label: 'Resume Builder' },
   { id: 'tools', label: 'AI Tools' },
+  { id: 'blog', label: 'Guides' },
 ];
 
 export default function Header({ page, onNavigate }) {

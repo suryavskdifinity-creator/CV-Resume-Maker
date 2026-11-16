@@ -14,9 +14,35 @@ import Templates from './pages/Templates';
 import Editor from './pages/Editor';
 import Tools from './pages/Tools';
 import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
+import Contact from './pages/Contact';
+import About from './pages/About';
+import Blog from './pages/Blog';
+import { articles } from './data/articles';
+
+const PAGES = ['home', 'templates', 'editor', 'tools', 'terms', 'privacy', 'contact', 'about', 'blog'];
+const TITLES = {
+  home: 'CVora by Suraj — Free AI Resume Builder with 150+ Templates',
+  templates: 'Free Resume Templates — ATS, Modern, Creative | CVora',
+  editor: 'Resume Builder — Create Your CV Free | CVora',
+  tools: 'AI Resume Tools — ATS Keyword Scan & Writing Helper | CVora',
+  terms: 'Terms & Conditions | CVora',
+  privacy: 'Privacy Policy | CVora',
+  contact: 'Contact Us | CVora',
+  about: 'About CVora | Free Resume Studio',
+  blog: 'Resume Tips & Career Guides | CVora',
+};
+
+function readPath() {
+  const parts = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
+  const first = parts[0] || 'home';
+  if (first === 'blog' && parts[1]) return { page: 'blog', slug: parts[1] };
+  return { page: PAGES.includes(first) ? first : 'home', slug: '' };
+}
 
 export default function App() {
-  const [page, setPage] = useState('home');
+  const [route, setRoute] = useState(readPath);
+  const page = route.page;
   const [cv, setCv] = useState(() => {
     try {
       return { ...initialCV, ...JSON.parse(localStorage.getItem('cvora-data') || '{}') };
@@ -59,10 +85,25 @@ export default function App() {
     return () => clearTimeout(t);
   }, [pdfCountdown]);
 
-  const go = useCallback((p) => {
-    setPage(p);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const go = useCallback((p, slug = '') => {
+    const path = p === 'home' ? '/' : slug ? `/${p}/${slug}` : `/${p}`;
+    if (window.location.pathname !== path) window.history.pushState({}, '', path);
+    setRoute({ page: p, slug });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }, []);
+
+  useEffect(() => {
+    const onPop = () => setRoute(readPath());
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  useEffect(() => {
+    const art = route.slug && articles.find((a) => a.slug === route.slug);
+    document.title = art ? `${art.title} | CVora` : TITLES[route.page] || TITLES.home;
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta && art) meta.setAttribute('content', art.excerpt);
+  }, [route]);
 
   const update = useCallback((key, value) => {
     setSaved(false);
@@ -157,6 +198,10 @@ export default function App() {
         />
       )}
       {page === 'terms' && <Terms />}
+      {page === 'privacy' && <Privacy />}
+      {page === 'contact' && <Contact />}
+      {page === 'about' && <About onNavigate={go} />}
+      {page === 'blog' && <Blog slug={route.slug} onNavigate={go} onOpenArticle={(slug) => go('blog', slug)} />}
       {page === 'tools' && (
         <Tools
           cv={cv}
@@ -195,7 +240,9 @@ export default function App() {
             </div>
           </div>
         </div>
-      )};
+      )}
+
+      <Toast message={toast} />
 
       {/* Always in DOM for reliable PDF / print */}
       <div id="cv-print-root" className="print-root" aria-hidden="true">

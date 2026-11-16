@@ -14,7 +14,7 @@ const TYPING_WORDS = ['hired', 'noticed', 'promoted', 'shortlisted', 'interviewe
 
 const STATS = [
   { value: '150+', label: 'Resume templates' },
-  { value: '13', label: 'Layout styles' },
+  { value: '18', label: 'Layout styles' },
   { value: '100%', label: 'Free PDF export' },
   { value: '0', label: 'Account required' },
 ];

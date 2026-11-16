@@ -26,6 +26,11 @@ export const BASE_LAYOUTS = [
   { id: 'pill', label: 'Pill', desc: 'Monogram + rounded section chips' },
   { id: 'darkside', label: 'Darkside', desc: 'Midnight sidebar, bright accents' },
   { id: 'editorial', label: 'Editorial', desc: 'Centered serif, double-rule masthead' },
+  { id: 'stripe', label: 'Stripe', desc: 'Bold accent bar with numbered sections' },
+  { id: 'bento', label: 'Bento', desc: 'Soft grey page with rounded cards' },
+  { id: 'compact', label: 'Compact', desc: 'Dense one-page layout' },
+  { id: 'tech', label: 'Tech', desc: 'Monospace headings and dark masthead' },
+  { id: 'split', label: 'Split', desc: 'Two-tone masthead' },
 ];
 
 export const CATEGORIES = [
@@ -92,6 +97,22 @@ const NAMED = [
   { name: 'Gazette', type: 'Trending', layout: 'editorial', color: '#9f1239', desc: 'Newspaper-style masthead with timeless serif type.' },
   { name: 'Ivy', type: 'Trending', layout: 'editorial', color: '#166534', desc: 'Academic editorial look for research & law.' },
   { name: 'Noir', type: 'Trending', layout: 'editorial', color: '#1e293b', desc: 'Black & white elegance, maximum gravitas.' },
+
+  { name: 'Marker', type: 'Trending', layout: 'stripe', color: '#2563eb', desc: 'Bold accent bar with numbered sections.' },
+  { name: 'Ribbon', type: 'Trending', layout: 'stripe', color: '#dc2626', desc: 'Confident red stripe for sales and leadership.' },
+  { name: 'Grove', type: 'Trending', layout: 'stripe', color: '#059669', desc: 'Fresh green stripe, calm and organised.' },
+  { name: 'Mosaic', type: 'Trending', layout: 'bento', color: '#6366f1', desc: 'Bento-style cards — modern and easy to scan.' },
+  { name: 'Tile', type: 'Trending', layout: 'bento', color: '#0ea5e9', desc: 'Soft grey canvas with crisp white sections.' },
+  { name: 'Quartz', type: 'Trending', layout: 'bento', color: '#d946ef', desc: 'Playful cards for design and content roles.' },
+  { name: 'Compact Pro', type: 'Professional', layout: 'compact', color: '#1e40af', desc: 'Fit a lot on one page without feeling crowded.' },
+  { name: 'One-Pager', type: 'ATS Friendly', layout: 'compact', color: '#0f766e', desc: 'Dense, ATS-safe single page for experienced candidates.' },
+  { name: 'Dense', type: 'Simple', layout: 'compact', color: '#334155', desc: 'Maximum content, clean hierarchy.' },
+  { name: 'Terminal', type: 'Trending', layout: 'tech', color: '#22c55e', desc: 'Developer-style monospace with a dark masthead.' },
+  { name: 'Stack', type: 'Trending', layout: 'tech', color: '#38bdf8', desc: 'For software, data and DevOps engineers.' },
+  { name: 'Binary', type: 'Trending', layout: 'tech', color: '#a78bfa', desc: 'Violet accents on a dark header.' },
+  { name: 'Duo', type: 'Trending', layout: 'split', color: '#e11d48', desc: 'Two-tone masthead that stands out in a stack.' },
+  { name: 'Contrast', type: 'Trending', layout: 'split', color: '#0d9488', desc: 'High-contrast split header, very modern.' },
+  { name: 'Fusion', type: 'Trending', layout: 'split', color: '#f59e0b', desc: 'Warm amber meets midnight navy.' },
 
   // Creative (still professional, not wild)
   { name: 'Vivid', type: 'Creative', layout: 'header', color: '#c2410c', desc: 'Powerful modern template with bold section highlights.' },
